@@ -1,1 +1,3 @@
-Dockerfile linguist-language=Docker
+* linguist-vendored
+Dockerfile linguist-vendored=false
+*.sh linguist-vendored=false
