@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>customized-cloudera-docker</artifactId>
+        <groupId>com.navidhsz.data</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>postgres</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.28.0</version>
+                <configuration>
+                    <!--<dockerHost>${docker.host}</dockerHost>-->
+                    <verbose>true</verbose>
+                    <follow>true</follow>
+                    <showLogs>true</showLogs>
+                    <images>
+                        <image>
+                            <name>com.navidhsz.data/postgres:latest</name>
+                            <alias>com.navidhsz.data.postgres</alias>
+                            <build>
+                                <cleanup>remove</cleanup>
+                                <dockerFile>${project.basedir}/docker/Dockerfile</dockerFile>
+                            </build>
+                            <run>
+                                <namingStrategy>alias</namingStrategy>
+                                <hostname>postgres</hostname>
+                                <ports>
+                                    <port>5432:5432</port>
+                                </ports>
+                                <log>
+                                    <enabled>true</enabled>
+                                    <prefix>[POSTGRES]</prefix>
+                                    <date>HH:mm:ss.sss</date>
+                                </log>
+                                <wait>
+                                    <time>300000</time>  <!--> timeout if following LOG dose not appear -->
+                                    <log>######################## DATABASE IS READY ########################</log>
+                                </wait>
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>build-docker-image</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>run-docker-image</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
