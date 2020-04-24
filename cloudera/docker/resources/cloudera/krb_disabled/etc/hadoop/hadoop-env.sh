@@ -22,7 +22,7 @@
 # remote nodes.
 
 # The java implementation to use.
-export JAVA_HOME=/usr/java/jdk1.8.0_201-amd64/jre
+export JAVA_HOME=/usr/lib/jvm/java/jre
 
 # The jsvc implementation to use. Jsvc is required to run secure datanodes
 # that bind to privileged ports to provide authentication of data transfer
@@ -47,7 +47,7 @@ done
 
 # Extra Java runtime options.  Empty by default.
 export HADOOP_COMMON_LIB_NATIVE_DIR="/opt/cloudera/native"
-export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.library.path=/opt/cloudera/native:/usr/java/jdk1.8.0_201-amd64/jre/lib/amd64/server"
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.library.path=/opt/cloudera/native:/usr/lib/jvm/java/jre/lib/amd64/server"
 
 # Command specific options appended to HADOOP_OPTS when specified
 export HADOOP_NAMENODE_OPTS="-Dhadoop.security.logger=${HADOOP_SECURITY_LOGGER:-INFO,RFAS} -Dhdfs.audit.logger=${HDFS_AUDIT_LOGGER:-INFO,NullAppender} $HADOOP_NAMENODE_OPTS"

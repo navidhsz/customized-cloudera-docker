@@ -20,7 +20,7 @@ EXPOSE 4040
 EXPOSE 8042
 EXPOSE 2222
 
-ENV LD_LIBRARY_PATH=/opt/cloudera/native:/usr/java/jdk1.8.0_201-amd64/jre/lib/amd64/server
+ENV LD_LIBRARY_PATH=/opt/cloudera/native:/usr/lib/jvm/java/jre/lib/amd64/server
 ENV HADOOP_HOME=/opt/cloudera/hadoop
 ENV HIVE_HOME=/opt/cloudera/hive
 ENV HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
@@ -148,11 +148,11 @@ RUN groupadd hadoop; \
     echo 'export SPARK_SCALA_VERSION=2.11' >> /etc/profile; \
     echo 'export KAFKA_HOME=/opt/cloudera/kafka/lib/kafka' >> /etc/profile; \
     echo 'export PATH=$PATH:$HADOOP_HOME/sbin:$SPARK_HOME/bin:$SPARK_HOME/sbin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$KAFKA_HOME/bin:/opt/cloudera/impala:/opt/cloudera/impala-shell/bin' >> /etc/profile; \
-    echo 'export LD_LIBRARY_PATH=/opt/cloudera/native/:/usr/java/jdk1.8.0_201-amd64/jre/lib/amd64/server' >> /etc/profile; \
+    echo 'export LD_LIBRARY_PATH=/opt/cloudera/native/:/usr/lib/jvm/java/jre/lib/amd64/server' >> /etc/profile; \
     echo 'export HADOOP_COMMON_LIB_NATIVE_DIR="/opt/cloudera/native"' >> /etc/profile; \
-    echo 'export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.library.path=/opt/cloudera/native:/usr/java/jdk1.8.0_201-amd64/jre/lib/amd64/server"' >> /etc/profile; \
+    echo 'export HADOOP_OPTS="$HADOOP_OPTS -Djava.net.preferIPv4Stack=true -Djava.library.path=/opt/cloudera/native:/usr/lib/jvm/java/jre/lib/amd64/server"' >> /etc/profile; \
     echo 'export IMPALA_HOME=/opt/cloudera/impala/usr/lib/impala' >> /etc/profile; \
-    echo 'export JAVA_HOME=/usr/java/jdk1.8.0_201-amd64' >> /etc/profile; \
+    echo 'export JAVA_HOME=/usr/lib/jvm/java/jre' >> /etc/profile; \
 
     source /etc/profile; \
 

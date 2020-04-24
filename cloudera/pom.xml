@@ -63,7 +63,7 @@
                                     <port>10000:10000</port>
                                     <port>50010:50010</port>
                                     <port>2222:2222</port>
-                                    <port>88:88/udp</port>
+                                    <!--<port>88:88/udp</port> kerberos port-->
                                     <port>21050:21050</port>
                                 </ports>
                                 <links>
